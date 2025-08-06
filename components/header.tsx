@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Menu, X, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +19,7 @@ export default function Header() {
 
   return (
     <motion.header 
-      className="fixed top-0 w-full z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-white/20"
+      className="fixed top-0 w-full z-50 glass-strong border-b border-primary-200/20 dark:border-primary-800/20"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -27,10 +28,10 @@ export default function Header() {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="p-2 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-lg group-hover:shadow-lg group-hover:shadow-purple-500/25 transition-all duration-300">
+            <div className="p-2 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg group-hover:shadow-lg group-hover:shadow-primary-500/25 transition-all duration-300 quantum-glow">
               <Zap className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-cyan-600 bg-clip-text text-transparent">
+            <span className="text-xl font-bold gradient-text-quantum">
               QuantumEdge
             </span>
           </Link>
@@ -41,7 +42,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 font-medium"
+                className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium"
               >
                 {item.label}
               </Link>
@@ -49,11 +50,12 @@ export default function Header() {
           </nav>
 
           {/* Desktop CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-3">
+            <ThemeToggle />
             <Button variant="ghost" className="text-gray-700 dark:text-gray-300">
               Sign In
             </Button>
-            <Button className="bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+            <Button className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 quantum-glow">
               Get Started
             </Button>
           </div>
@@ -80,22 +82,26 @@ export default function Header() {
           }}
           transition={{ duration: 0.3 }}
         >
-          <div className="py-4 space-y-4 border-t border-gray-200/20">
+          <div className="py-4 space-y-4 border-t border-primary-200/20 dark:border-primary-800/20">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 font-medium"
+                className="block text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <div className="flex flex-col space-y-2 pt-4">
+            <div className="flex flex-col space-y-2 pt-4 border-t border-primary-200/20 dark:border-primary-800/20">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Theme</span>
+                <ThemeToggle />
+              </div>
               <Button variant="ghost" className="justify-start">
                 Sign In
               </Button>
-              <Button className="bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white">
+              <Button className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white quantum-glow">
                 Get Started
               </Button>
             </div>
